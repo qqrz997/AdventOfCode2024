@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day2", "Day2\Day2.csproj", "{F3DA6749-A1BB-455B-83A1-357B3B9D3388}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,5 +19,9 @@ Global
 		{B9AA3BF9-518E-4E83-970F-897A9ABC3E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9AA3BF9-518E-4E83-970F-897A9ABC3E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9AA3BF9-518E-4E83-970F-897A9ABC3E69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3DA6749-A1BB-455B-83A1-357B3B9D3388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3DA6749-A1BB-455B-83A1-357B3B9D3388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3DA6749-A1BB-455B-83A1-357B3B9D3388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3DA6749-A1BB-455B-83A1-357B3B9D3388}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
