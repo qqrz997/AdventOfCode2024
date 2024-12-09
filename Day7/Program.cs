@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 var equations = File.ReadAllLines("input.txt")
     .Select(str => new Regex(@"(?<result>\d*): (?<constants>.*)", RegexOptions.Singleline).Match(str))

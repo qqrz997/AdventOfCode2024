@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Numerics;
+﻿using System.Numerics;
 
 var grid = File.ReadAllLines("input.txt")
     .Select(str => str.ToCharArray())
