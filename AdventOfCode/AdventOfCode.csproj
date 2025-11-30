@@ -8,9 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update="input.txt">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+      <Folder Include="Solutions\Year2024\" />
+      <Folder Include="Solutions\2025\" />
     </ItemGroup>
 
 </Project>
