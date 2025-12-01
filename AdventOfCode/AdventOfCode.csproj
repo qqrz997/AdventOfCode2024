@@ -7,9 +7,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Solutions\Year2024\" />
-      <Folder Include="Solutions\2025\" />
-    </ItemGroup>
-
 </Project>
