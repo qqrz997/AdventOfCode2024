@@ -24,7 +24,7 @@ public static class ProblemInputs
             notepadProcess.WaitForExit();
 
             using var reader = inputFile.OpenText();
-            input = reader.ReadToEnd();
+            input = reader.ReadToEnd().TrimEnd();
         } while (string.IsNullOrEmpty(input));
         
         return new(input);

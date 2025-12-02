@@ -8,7 +8,6 @@ public class Day1 : IProblemSolution
     {
         var input = ProblemInputs.GetInput()
             .GetLines()
-            .Where(line => !string.IsNullOrWhiteSpace(line))
             .Select(line => new Instruction(
                 line[0] == 'L' ? Direction.Left : Direction.Right,
                 int.Parse(line[1..])))
