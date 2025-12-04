@@ -15,186 +15,67 @@ public class Day4 : IProblemSolution
         Console.WriteLine(PartTwo(input));
     }
 
-    private static int PartOne(char[][] input)
+    private static int PartOne(char[][] grid)
     {
         int sum = 0;
-        for (int y = 0; y < input.Length; y++)
+        int height = grid.Length;
+        int width = grid[0].Length;
+        for (int y = 0; y < height; y++)
         {
-            var line =  input[y];
-            for (int x = 0; x < line.Length; x++)
+            for (int x = 0; x < width; x++)
             {
-                if (line[x] != '@')
+                if (grid[y][x] == '@' && IsAccessible(grid, width, height, x, y))
                 {
-                    continue;
+                    sum++;
                 }
-
-                int found = 0;
-                if (y - 1 >= 0 && x - 1 >= 0 && input[y - 1][x - 1] == '@')
-                {
-                    found++;
-                }
-
-                if (y - 1 >= 0 && input[y - 1][x] == '@')
-                {
-                    found++;
-                }
-
-                if (y - 1 >= 0 && x + 1 < line.Length && input[y - 1][x + 1] == '@')
-                {
-                    found++;
-                }
-
-                if (x - 1 >= 0 && input[y][x - 1] == '@')
-                {
-                    found++;
-                }
-
-                if (found >= 4)
-                {
-                    continue;
-                }
-
-                if (x + 1 < line.Length && input[y][x + 1] == '@')
-                {
-                    found++;
-                }
-
-                if (found >= 4)
-                {
-                    continue;
-                }
-
-                if (y + 1 < input.Length && x - 1 >= 0 && input[y + 1][x - 1] == '@')
-                {
-                    found++;
-                }
-
-                if (found >= 4)
-                {
-                    continue;
-                }
-
-                if (y + 1 < input.Length && input[y + 1][x] == '@')
-                {
-                    found++;
-                }
-
-                if (found >= 4)
-                {
-                    continue;
-                }
-
-                if (y + 1 < input.Length && x + 1 < line.Length && input[y + 1][x + 1] == '@')
-                {
-                    found++;
-                }
-
-                if (found >= 4)
-                {
-                    continue;
-                }
-
-                sum++;
             }
         }
         return sum;
     }
 
-    private static int PartTwo(char[][] input)
+    private static int PartTwo(char[][] grid)
     {
         int sum = 0;
-        
+        int height = grid.Length;
+        int width = grid[0].Length;
         while (true)
         {
             bool found = false;
-            for (int y = 0; y < input.Length; y++)
+            for (int y = 0; y < height; y++)
             {
-                var line = input[y];
-                for (int x = 0; x < line.Length; x++)
+                for (int x = 0; x < width; x++)
                 {
-                    if (line[x] != '@')
+                    if (grid[y][x] == '@' && IsAccessible(grid, width, height, x, y))
                     {
-                        continue;
+                        grid[y][x] = '.';
+                        sum++;
+                        found = true;
                     }
-
-                    int adjacent = 0;
-                    if (y - 1 >= 0 && x - 1 >= 0 && input[y - 1][x - 1] == '@')
-                    {
-                        adjacent++;
-                    }
-
-                    if (y - 1 >= 0 && input[y - 1][x] == '@')
-                    {
-                        adjacent++;
-                    }
-
-                    if (y - 1 >= 0 && x + 1 < line.Length && input[y - 1][x + 1] == '@')
-                    {
-                        adjacent++;
-                    }
-
-                    if (x - 1 >= 0 && input[y][x - 1] == '@')
-                    {
-                        adjacent++;
-                    }
-
-                    if (adjacent >= 4)
-                    {
-                        continue;
-                    }
-
-                    if (x + 1 < line.Length && input[y][x + 1] == '@')
-                    {
-                        adjacent++;
-                    }
-
-                    if (adjacent >= 4)
-                    {
-                        continue;
-                    }
-
-                    if (y + 1 < input.Length && x - 1 >= 0 && input[y + 1][x - 1] == '@')
-                    {
-                        adjacent++;
-                    }
-
-                    if (adjacent >= 4)
-                    {
-                        continue;
-                    }
-
-                    if (y + 1 < input.Length && input[y + 1][x] == '@')
-                    {
-                        adjacent++;
-                    }
-
-                    if (adjacent >= 4)
-                    {
-                        continue;
-                    }
-
-                    if (y + 1 < input.Length && x + 1 < line.Length && input[y + 1][x + 1] == '@')
-                    {
-                        adjacent++;
-                    }
-
-                    if (adjacent >= 4)
-                    {
-                        continue;
-                    }
-
-                    input[y][x] = '.';
-                    sum++;
-                    found = true;
                 }
             }
-
-            if (!found)
-            {
-                break;
-            }
+            if (!found) break;
         }
 
         return sum;
+    }
+
+    private static (int Y, int X)[] Coords { get; } =
+        [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)];
+    
+    private static bool IsAccessible(char[][] grid, int w, int h, int x, int y)
+    {
+        int adjacent = 0;
+        foreach (var (cY, cX) in Coords)
+        {
+            var checkY = y + cY;
+            var checkX = x + cX;
+            if (checkY < 0 || checkX < 0 || checkY >= h || checkX >= w) 
+                continue;
+            if (grid[checkY][checkX] == '@')
+                adjacent++;
+            if (adjacent >= 4)
+                return false;
+        }
+        return true;
     }
 }
