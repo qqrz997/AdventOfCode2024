@@ -34,13 +34,26 @@ internal static class Program
 
         var inputSolutionInfo = GetInputRoutine();
 
-        if (problemInfoPairs.TryGetValue(inputSolutionInfo, out var selectedType))
+        if (!problemInfoPairs.TryGetValue(inputSolutionInfo, out var selectedType))
         {
-            Console.WriteLine($"Running {inputSolutionInfo.Year}/12/{inputSolutionInfo.Day}...");
-            var problemSolution = Activator.CreateInstance(selectedType) as IProblemSolution;
+            Console.WriteLine("Failed to get solution info for input...");
+            Console.ReadKey();
+            return;
+        }
+
+        Console.WriteLine($"Running {inputSolutionInfo.Year}/12/{inputSolutionInfo.Day}...");
+        var problemSolution = Activator.CreateInstance(selectedType) as IProblemSolution;
+
+        try
+        {
             problemSolution?.Run();
         }
-        
+        catch (Exception e)
+        {
+            Console.WriteLine($"Oops! Encountered a {e.GetType().Name}");
+        }
+
+        Console.ReadKey();
         return;
 
         SolutionInfo GetInputRoutine()
