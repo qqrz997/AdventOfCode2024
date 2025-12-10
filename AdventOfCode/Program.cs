@@ -28,7 +28,7 @@ internal static class Program
         
         foreach (var group in problemInfoPairs.GroupBy(kvp => kvp.Key.Year))
         {
-            var days = group.Select(kvp => kvp.Key.Day).Order();
+            var days = group.Select(kvp => int.Parse(kvp.Key.Day)).Order();
             Console.WriteLine($"Year {group.Key} - Days: {string.Join(", ", days)}");
         }
 
